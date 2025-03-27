@@ -1,29 +1,19 @@
 pipeline {
-    agent any
-
+    agent any 
     stages {
         stage('Prepare') {
             steps {
-                script {
-                    sh 'curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -'
-                    sh 'sudo apt install -y nodejs'
-                }
+                echo 'Installing Node.js 22...'
             }
         }
-
         stage('Build') {
             steps {
-                script {
-                    sh 'npm --version'
-                }
+                sh 'npm --version'
             }
         }
-
         stage('Test') {
             steps {
-                script {
-                    sh 'echo "JENKINS_URL: $JENKINS_URL"'
-                }
+                echo "JENKINS_URL is: ${env.JENKINS_URL}"
             }
         }
     }
